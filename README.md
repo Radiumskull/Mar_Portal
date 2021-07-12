@@ -1,9 +1,11 @@
-MAR_PORTAL
+<h2>MAR_PORTAL</h2>
 
-Project Members - 
-Aritra Bhattacharjee - github.com/Radiumskull
-Akashdeep Bhattacharya - github.com/akashdeep007
-Arijit Banerjee
+<h5>Project Members - </h5>
+<ul>
+<li>Aritra Bhattacharjee - github.com/Radiumskull
+<li>Akashdeep Bhattacharya - github.com/akashdeep007
+<li>Arijit Banerjee
+</ul>
 
 Project Description - 
 This is a Full-Stack project using React and Golang.
