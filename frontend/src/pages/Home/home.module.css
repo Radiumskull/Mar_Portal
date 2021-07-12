@@ -1,0 +1,9 @@
+.activitySection h1 {
+  margin: 1em 0em;
+}
+
+.activitySectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

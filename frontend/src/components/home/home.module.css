@@ -1,0 +1,96 @@
+.dashboard {
+  display: flex;
+  justify-content: space-between;
+
+  padding: 1em;
+  border-radius: 4px;
+  box-shadow: 0px 4px 8px 2px rgb(235, 238, 240);
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1em;
+}
+
+.image {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  background-color: wheat;
+}
+
+.userDetails {
+  margin-bottom: 1em;
+}
+
+.userDetails div:first-child {
+  font-weight: 600;
+  font-size: 1.4rem;
+}
+
+.userDetails div:last-child {
+  font-size: 0.9rem;
+}
+
+.userActions {
+  display: flex;
+  flex-direction: column;
+
+  justify-content: space-between;
+}
+
+.year {
+  font-weight: 600;
+  text-align: center;
+  font-size: 1rem;
+}
+
+.userActions div label {
+  font-size: 0.7rem;
+}
+
+.activityGroup {
+  margin: 1em auto;
+  padding: 1em;
+  box-shadow: 0px 4px 8px 2px rgb(235, 238, 240);
+}
+
+.activityGroup div:first-child {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.activityTitleBar span {
+  font-weight: 600;
+}
+
+.activityGroup h4 {
+  margin: 1em 0em;
+}
+
+.activityGroup hr {
+  color: rgb(234, 238, 241);
+}
+
+.activityCard {
+  display: flex;
+  justify-content: space-between;
+}
+
+.activityCard div:first-child {
+  display: flex;
+  gap: 1em;
+}
+
+.activityCard div:last-child {
+  display: flex;
+  gap: 1em;
+}
+
+.activityCard label {
+  font-size: 0.8rem;
+  font-weight: 500;
+}

@@ -1,0 +1,29 @@
+.root {
+  background: black;
+  width: 100vw;
+}
+
+.navbar {
+  display: flex;
+  height: 70px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.1em 2em;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.brand {
+  color: white;
+  font-weight: 600;
+}
+
+.navbar ul {
+  list-style-type: none;
+  display: flex;
+}
+
+ul li a {
+  text-decoration: none;
+  color: white;
+}
