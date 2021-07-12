@@ -36,7 +36,7 @@ const CommonForm = ({ fields, submitHandler }) => {
         Object.keys(fields).map((field) => (
           <Input key={field} {...fields[field]} onChange={changeHandler} />
         ))}
-      <button type="button" onSubmit={onSubmit} className={styles.button}>
+      <button type="button" onClick={onSubmit} className={styles.button}>
         Submit
       </button>
     </form>

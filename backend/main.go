@@ -8,6 +8,7 @@ import (
 
 	"github.com/julienschmidt/httprouter"
 	_ "github.com/lib/pq"
+	"github.com/rs/cors"
 )
 
 func main() {
@@ -23,5 +24,7 @@ func main() {
 	h.AuthHandler(router)
 	h.UserHandler(router)
 
-	log.Fatal(http.ListenAndServe(":8000", router))
+	handler := cors.Default().Handler(router)
+
+	log.Fatal(http.ListenAndServe(":8000", handler))
 }

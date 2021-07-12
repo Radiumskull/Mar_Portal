@@ -2,6 +2,7 @@ import React from "react";
 import GeneralForm from "../../components/Authentication/GeneralForm";
 import styles from "./auth.module.css";
 import { Link } from "react-router-dom";
+import { LoginHandler } from "../../utils/authUtils";
 
 const loginFields = {
   username: { name: "username", type: "text", label: "Username" },
@@ -15,8 +16,13 @@ const registerFields = {
 
 const Authentication = (props) => {
   const auth_type = props.history.location.pathname.slice(1);
-  const loginSubmitHandler = (data) => {
-    console.log(data);
+  const loginSubmitHandler = async (data) => {
+    try {
+      console.log(data);
+      await LoginHandler(data);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const registerSubmitHandler = () => {};
