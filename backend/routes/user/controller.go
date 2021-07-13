@@ -13,6 +13,7 @@ import (
 type UserController struct {
 	UserDataRepo *repositories.UserDataRepo
 	UserRepo     *repositories.UserRepo
+	ActivityRepo *repositories.ActivityRepo
 }
 
 func (r *UserController) GetUserById(w http.ResponseWriter, _ *http.Request, params httprouter.Params) {
@@ -50,4 +51,14 @@ func (h *UserController) UpdatePoints(w http.ResponseWriter, r *http.Request, pa
 	}
 
 	utils.SuccessResponseWithMessage(w, nil, "Successfully Updated Points")
+}
+
+func (h *UserController) GetActivites(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+	userid := r.Header.Get("userid")
+	activities, err := h.ActivityRepo.GetActivitesByUserid(userid)
+	if err != nil {
+		utils.ErrorResponse(w, err)
+	}
+
+	utils.SuccessResponse(w, activities)
 }

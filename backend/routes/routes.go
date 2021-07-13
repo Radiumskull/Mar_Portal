@@ -50,11 +50,13 @@ func (h *BaseHandler) UserHandler(router *httprouter.Router) {
 	controller := user.UserController{
 		UserDataRepo: repositories.NewUserDataRepo(h.DB),
 		UserRepo:     repositories.NewUserRepo(h.DB),
+		ActivityRepo: repositories.NewActivityRepo(h.DB),
 	}
 
 	routes := []Route{
 		NewRoute("GET", "/user/name/:userid", controller.GetUserById),
 		NewRoute("POST", "/user/points", controller.UpdatePoints),
+		NewRoute("GET", "/user/activities", controller.GetActivites),
 	}
 
 	for _, route := range routes {

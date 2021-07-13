@@ -11,6 +11,11 @@ import (
 	"github.com/julienschmidt/httprouter"
 )
 
+type TokenData struct {
+	Username string
+	Userid   int
+}
+
 func IsAuthenticated(h httprouter.Handle, UserRepo *repositories.UserRepo) httprouter.Handle {
 	return func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 		tokenString := r.Header.Get("Authorization")
@@ -23,6 +28,7 @@ func IsAuthenticated(h httprouter.Handle, UserRepo *repositories.UserRepo) httpr
 		if claims, ok := token.Claims.(jwt.MapClaims); ok && token.Valid {
 			data := claims["data"].(map[string]interface{})
 			username := data["username"].(string)
+			userid := data["userid"].(string)
 
 			// logger.Output(1, username)
 			_, DBErr := UserRepo.FindByUsername(username)
@@ -30,7 +36,7 @@ func IsAuthenticated(h httprouter.Handle, UserRepo *repositories.UserRepo) httpr
 				utils.ErrorResponse(w, errors.New("not authenticated"))
 				return
 			}
-
+			r.Header.Add("userid", userid)
 			h(w, r, ps)
 
 		} else {

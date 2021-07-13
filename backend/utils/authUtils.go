@@ -2,6 +2,7 @@ package utils
 
 import (
 	"backend/models"
+	"strconv"
 	"time"
 
 	"github.com/dgrijalva/jwt-go"
@@ -15,7 +16,7 @@ func CreateToken(user *models.User) (string, error) {
 		"exp": time.Now().Add(time.Hour * 99999).Unix(),
 		"data": map[string]interface{}{
 			"username": user.Username,
-			"userid":   user.Userid,
+			"userid":   strconv.Itoa(user.Userid),
 		},
 	}
 	at := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
