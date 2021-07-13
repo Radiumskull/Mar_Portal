@@ -28,8 +28,6 @@ type AuthResponse struct {
 }
 
 func (h *AuthController) Login(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
-
-	w.Header().Set("Access-Control-Allow-Origin", "*")
 	var body AuthRequest
 	decoder := json.NewDecoder(r.Body)
 	jsonErr := decoder.Decode(&body)

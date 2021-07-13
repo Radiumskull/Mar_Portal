@@ -48,12 +48,13 @@ func (h *BaseHandler) AuthHandler(router *httprouter.Router) {
 
 func (h *BaseHandler) UserHandler(router *httprouter.Router) {
 	controller := user.UserController{
-		UserRepo: repositories.NewUserRepo(h.DB),
+		UserDataRepo: repositories.NewUserDataRepo(h.DB),
+		UserRepo:     repositories.NewUserRepo(h.DB),
 	}
 
 	routes := []Route{
-		NewRoute("GET", "/user/name/:username", controller.GetUserByUsername),
-		NewRoute("GET", "/user/id/:id", controller.GetUserById),
+		NewRoute("GET", "/user/name/:userid", controller.GetUserById),
+		NewRoute("POST", "/user/points", controller.UpdatePoints),
 	}
 
 	for _, route := range routes {

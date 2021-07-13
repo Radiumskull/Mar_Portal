@@ -12,7 +12,7 @@ func CreateToken(user *models.User) (string, error) {
 	//Creating Access Token
 	claims := &jwt.MapClaims{
 		"iss": "issuer",
-		"exp": time.Now().Add(time.Hour).Unix(),
+		"exp": time.Now().Add(time.Hour * 99999).Unix(),
 		"data": map[string]interface{}{
 			"username": user.Username,
 			"userid":   user.Userid,

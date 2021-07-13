@@ -2,9 +2,11 @@ package models
 
 // User ..
 type UserData struct {
-	Userid   int
-	Username string
-	Hash     string
+	Userid int
+	Name   string
+	YOP    string
+	Dept   string
+	Points int
 }
 
 // UserRepository ..
