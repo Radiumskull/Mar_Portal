@@ -1,7 +1,9 @@
 import styles from "./navbar.module.css";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
+  const user = useSelector((state) => state.user);
   return (
     <nav className={styles.root}>
       <div className={styles.navbar}>
@@ -12,7 +14,11 @@ const Navbar = () => {
         </div>
         <ul>
           <li>
-            <Link to="/login">Login</Link>
+            {user ? (
+              <Link to="/account">Account</Link>
+            ) : (
+              <Link to="/login">Login</Link>
+            )}
           </li>
         </ul>
       </div>

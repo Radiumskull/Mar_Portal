@@ -1,10 +1,10 @@
-package controllers
+package routes
 
 import (
-	"backend/controllers/auth"
-	"backend/controllers/middlewares"
-	"backend/controllers/user"
 	"backend/repositories"
+	"backend/routes/auth"
+	"backend/routes/middlewares"
+	"backend/routes/user"
 	"database/sql"
 
 	"github.com/julienschmidt/httprouter"
@@ -52,7 +52,8 @@ func (h *BaseHandler) UserHandler(router *httprouter.Router) {
 	}
 
 	routes := []Route{
-		NewRoute("GET", "/user/:id", controller.GetUser),
+		NewRoute("GET", "/user/name/:username", controller.GetUserByUsername),
+		NewRoute("GET", "/user/id/:id", controller.GetUserById),
 	}
 
 	for _, route := range routes {

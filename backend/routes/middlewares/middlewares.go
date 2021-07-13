@@ -4,6 +4,7 @@ import (
 	"backend/repositories"
 	"backend/utils"
 	"errors"
+	"log"
 	"net/http"
 
 	"github.com/dgrijalva/jwt-go"
@@ -36,4 +37,12 @@ func IsAuthenticated(h httprouter.Handle, UserRepo *repositories.UserRepo) httpr
 			utils.ErrorResponse(w, errors.New("not authenticated"))
 		}
 	}
+}
+
+func RouteLogger(h http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		logger := log.Default()
+		logger.Println(r.URL)
+		h.ServeHTTP(w, r)
+	})
 }

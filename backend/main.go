@@ -1,8 +1,9 @@
 package main
 
 import (
-	"backend/controllers"
 	"backend/database"
+	"backend/routes"
+	"backend/routes/middlewares"
 	"log"
 	"net/http"
 
@@ -19,12 +20,13 @@ func main() {
 		log.Fatal(err)
 	}
 
-	h := &controllers.BaseHandler{DB: db}
+	h := &routes.BaseHandler{DB: db}
 
 	h.AuthHandler(router)
 	h.UserHandler(router)
 
 	handler := cors.Default().Handler(router)
+	newHandler := middlewares.RouteLogger(handler)
 
-	log.Fatal(http.ListenAndServe(":8000", handler))
+	log.Fatal(http.ListenAndServe(":8000", newHandler))
 }
