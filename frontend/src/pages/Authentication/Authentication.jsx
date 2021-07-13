@@ -4,7 +4,7 @@ import styles from "./auth.module.css";
 import { Link } from "react-router-dom";
 import { LoginHandler } from "../../utils/authUtils";
 import { useHistory } from "react-router-dom";
-
+import { useDispatch } from "react-redux";
 const loginFields = {
   username: { name: "username", type: "text", label: "Username" },
   password: { name: "password", type: "password", label: "Password" },
@@ -17,11 +17,14 @@ const registerFields = {
 
 const Authentication = (props) => {
   const history = useHistory();
+  const dispatch = useDispatch();
   const auth_type = props.history.location.pathname.slice(1);
   const loginSubmitHandler = async (data) => {
     try {
       await LoginHandler(data);
-      history.push("/");
+      dispatch({ type: "INIT.USER" });
+
+      history.go("/");
     } catch (err) {
       console.log(err);
     }
