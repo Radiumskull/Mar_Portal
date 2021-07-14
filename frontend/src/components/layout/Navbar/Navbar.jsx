@@ -13,13 +13,20 @@ const Navbar = () => {
           </Link>
         </div>
         <ul>
-          <li>
-            {user ? (
-              <Link to="/account">Account</Link>
-            ) : (
+          {user ? (
+            <>
+              <li>
+                <Link to="/account">Account</Link>
+              </li>
+              <li>
+                <Link to="/logout">Log out</Link>
+              </li>
+            </>
+          ) : (
+            <li>
               <Link to="/login">Login</Link>
-            )}
-          </li>
+            </li>
+          )}
         </ul>
       </div>
     </nav>

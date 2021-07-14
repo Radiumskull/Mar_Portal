@@ -23,7 +23,11 @@
   display: flex;
 }
 
-ul li a {
+.navbar ul li a {
   text-decoration: none;
   color: white;
+}
+
+.navbar ul li {
+  margin: 0em 0.5em;
 }

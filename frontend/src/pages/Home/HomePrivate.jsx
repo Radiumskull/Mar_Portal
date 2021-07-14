@@ -55,10 +55,7 @@ const HomePrivate = () => {
 
   return (
     <div>
-      <Dashboard />
-      <Dialog active={dialog} closeHandler={closeDialog}>
-        <ActivityFormContainer submitHandler={submitHandler} />
-      </Dialog>
+      <Dashboard user={userData} />
       <section className={styles.activitySection}>
         <div className={styles.activitySectionHeader}>
           <h1>Activities</h1>
@@ -73,6 +70,10 @@ const HomePrivate = () => {
         <ActivityGroup />
         <ActivityGroup />
       </section>
+
+      <Dialog active={dialog} closeHandler={closeDialog}>
+        <ActivityFormContainer submitHandler={submitHandler} />
+      </Dialog>
     </div>
   );
 };

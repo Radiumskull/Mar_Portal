@@ -1,6 +1,6 @@
 import styles from "./home.module.css";
 
-const Dashboard = () => {
+const Dashboard = ({ user }) => {
   return (
     <section className={styles.dashboard}>
       <div className={styles.user}>
@@ -15,18 +15,18 @@ const Dashboard = () => {
         </div>
         <div>
           <div className={styles.userDetails}>
-            <div>Aritra Bhattacharjee</div>
+            <div>{user && user.Name}</div>
             <div>3rd Year, 6th Semester</div>
           </div>
 
-          <div>Information Technology</div>
+          <div>{user && user.Dept}</div>
         </div>
       </div>
 
       <div className={styles.userActions}>
-        <div>
-          <label>Year of Admission</label>
-          <div className={styles.year}>2020</div>
+        <div style={{ textAlign: "center", width: "100%", margin: "0 auto" }}>
+          <label>Batch</label>
+          <div className={styles.year}>{user && user.YOP}</div>
         </div>
       </div>
     </section>

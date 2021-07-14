@@ -8,8 +8,7 @@ export const getUserData = async (user) => {
         Authorization: user.token,
       },
     });
-    console.log(res);
-    return res.data;
+    return res.data.Data;
   } catch (err) {
     throw err;
   }
@@ -21,8 +20,8 @@ export const getActivities = async (user) => {
         Authorization: user.token,
       },
     });
-
-    return res.data;
+    console.log(user.data);
+    return res.data.Data;
   } catch (err) {
     throw err;
   }
