@@ -19,7 +19,7 @@ func NewUserDataRepo(db *sql.DB) *UserDataRepo {
 }
 
 // FindByID ..
-func (r *UserDataRepo) FindByID(ID int) (*models.UserData, error) {
+func (r *UserDataRepo) FindByID(ID string) (*models.UserData, error) {
 	var user models.UserData
 	err := r.db.QueryRow("select userid, name, yop, department, points from userdata where userid = $1", ID).Scan(&user.Userid, &user.Name, &user.YOP, &user.Dept, &user.Points)
 	return &user, err

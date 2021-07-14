@@ -54,7 +54,7 @@ func (h *BaseHandler) UserHandler(router *httprouter.Router) {
 	}
 
 	routes := []Route{
-		NewRoute("GET", "/user/name/:userid", controller.GetUserById),
+		NewRoute("GET", "/user", controller.GetUserById),
 		NewRoute("POST", "/user/points", controller.UpdatePoints),
 		NewRoute("GET", "/user/activities", controller.GetActivites),
 	}

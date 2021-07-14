@@ -5,7 +5,6 @@ import (
 	"backend/utils"
 	"encoding/json"
 	"net/http"
-	"strconv"
 
 	"github.com/julienschmidt/httprouter"
 )
@@ -16,9 +15,9 @@ type UserController struct {
 	ActivityRepo *repositories.ActivityRepo
 }
 
-func (r *UserController) GetUserById(w http.ResponseWriter, _ *http.Request, params httprouter.Params) {
-	userId, _ := strconv.ParseInt(params.ByName("userid"), 10, 4)
-	user, err := r.UserDataRepo.FindByID(int(userId))
+func (h *UserController) GetUserById(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+	userId := r.Header.Get("userid")
+	user, err := h.UserDataRepo.FindByID(userId)
 	if err != nil {
 		utils.ErrorResponse(w, err)
 		return
@@ -39,12 +38,11 @@ func (h *UserController) UpdatePoints(w http.ResponseWriter, r *http.Request, pa
 
 	jsonErr := decoder.Decode(&pointReq)
 	if jsonErr != nil {
-		utils.SuccessResponse(w, jsonErr)
+		utils.ErrorResponse(w, jsonErr)
 		return
 	}
 
 	err := h.UserDataRepo.SetPoints(pointReq.Userid, pointReq.Points, pointReq.Method)
-
 	if err != nil {
 		utils.ErrorResponse(w, err)
 		return

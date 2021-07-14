@@ -47,6 +47,10 @@ func IsAuthenticated(h httprouter.Handle, UserRepo *repositories.UserRepo) httpr
 
 func RouteLogger(h http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Access-Control-Allow-Origin", "*")
+		w.Header().Set("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization")
+		w.Header().Set("Content-Type", "application/json")
+
 		logger := log.Default()
 		logger.Println(r.URL)
 		h.ServeHTTP(w, r)
