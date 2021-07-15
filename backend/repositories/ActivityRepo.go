@@ -3,6 +3,8 @@ package repositories
 import (
 	"backend/models"
 	"database/sql"
+	"log"
+	"strconv"
 )
 
 type ActivityRepo struct {
@@ -25,7 +27,34 @@ func (h *ActivityRepo) FindById(ID int) (models.Activity, error) {
 
 func (h *ActivityRepo) GetActivitesByUserid(Userid string) ([]models.Activity, error) {
 	var activities []models.Activity
-	rows, err := h.db.Query("SELECT activityid, userid, name, category, date_of_certification, certificate from activities WHERE userid = $1", Userid)
+	rows, err := h.db.Query("SELECT activityid, userid, name, category, date_of_certification, certificate from activities WHERE userid = $1 AND EXTRACT(year from date_of_certification) = 2020", Userid)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	for rows.Next() {
+		var activity models.Activity
+		if err := rows.Scan(&activity.ActivityId, &activity.Userid, &activity.Name, &activity.Category, &activity.Date, &activity.Certificate); err != nil {
+			return nil, err
+		}
+		activities = append(activities, activity)
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+
+	return activities, nil
+}
+
+func (h *ActivityRepo) GetActivitesByYear(Userid string, Year string) ([]models.Activity, error) {
+	var activities []models.Activity
+	intYear, _ := strconv.ParseInt(Year, 10, 64)
+	fromDate := strconv.Itoa(int(intYear-1)) + "-08-01"
+	toDate := strconv.Itoa(int(intYear)) + "-08-01"
+
+	log.Default().Output(1, toDate)
+	rows, err := h.db.Query("SELECT activityid, userid, name, category, date_of_certification, certificate from activities WHERE userid = $1 AND date_of_certification >= $2 AND date_of_certification <= $3", Userid, fromDate, toDate)
 	if err != nil {
 		return nil, err
 	}

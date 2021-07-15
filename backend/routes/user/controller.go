@@ -60,3 +60,14 @@ func (h *UserController) GetActivites(w http.ResponseWriter, r *http.Request, _ 
 
 	utils.SuccessResponse(w, activities)
 }
+
+func (h *UserController) GetActivitesByPage(w http.ResponseWriter, r *http.Request, params httprouter.Params) {
+	userid := r.Header.Get("userid")
+	page := params.ByName("page")
+	activities, err := h.ActivityRepo.GetActivitesByYear(userid, page)
+	if err != nil {
+		utils.ErrorResponse(w, err)
+	}
+
+	utils.SuccessResponse(w, activities)
+}

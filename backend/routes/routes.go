@@ -57,6 +57,7 @@ func (h *BaseHandler) UserHandler(router *httprouter.Router) {
 		NewRoute("GET", "/user", controller.GetUserById),
 		NewRoute("POST", "/user/points", controller.UpdatePoints),
 		NewRoute("GET", "/user/activities", controller.GetActivites),
+		NewRoute("GET", "/user/activities/:page", controller.GetActivitesByPage),
 	}
 
 	for _, route := range routes {

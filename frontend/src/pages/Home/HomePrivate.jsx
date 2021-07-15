@@ -20,6 +20,7 @@ const HomePrivate = () => {
   const user = useSelector((state) => state.user);
   const [userData, setUserData] = React.useState(null);
   const [dialog, setDialog] = React.useState(false);
+  const [studentYear, setStudentYear] = React.useState(null);
   const closeDialog = () => setDialog(false);
   const openDialog = () => setDialog(true);
 
@@ -29,6 +30,10 @@ const HomePrivate = () => {
   const fetchUser = async () => {
     try {
       const data = await getUserData(user);
+      const currentYear = new Date().getFullYear();
+      let studentYear = currentYear - parseInt(data.YOP);
+      if (studentYear === 0) studentYear = 1;
+      setStudentYear(studentYear);
       setUserData(data);
     } catch (err) {
       console.log(err);
@@ -43,13 +48,25 @@ const HomePrivate = () => {
     }
   };
 
+  const mapActivityGroups = () => {
+    const groups = [];
+    console.log(studentYear);
+    for (let i = 1; i <= studentYear; i++)
+      groups.push(
+        <ActivityGroup year={i} key={i} yop={parseInt(userData.YOP)} />
+      );
+    return groups;
+  };
+
   React.useEffect(() => {
     if (user) fetchUser();
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
   React.useEffect(() => {
     if (user) fetchUser();
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -65,12 +82,8 @@ const HomePrivate = () => {
             </button>
           </div>
         </div>
-        <ActivityGroup />
-        <ActivityGroup />
-        <ActivityGroup />
-        <ActivityGroup />
       </section>
-
+      {userData && studentYear && mapActivityGroups().map((elem, _) => elem)}
       <Dialog active={dialog} closeHandler={closeDialog}>
         <ActivityFormContainer submitHandler={submitHandler} />
       </Dialog>

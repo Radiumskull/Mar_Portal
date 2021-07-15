@@ -4,7 +4,6 @@
 <ul>
 <li>Aritra Bhattacharjee - github.com/Radiumskull
 <li>Akashdeep Bhattacharya - github.com/akashdeep007
-<li>Arijit Banerjee
 </ul>
 
 Project Description - 
