@@ -13,6 +13,7 @@ import (
 
 type AuthController struct {
 	UserRepo    *repositories.UserRepo
+    UserDataRepo *repositories.UserDataRepo
 	Encrypt     func(password []byte, cost int) ([]byte, error)
 	CompareHash func(hashedPassword []byte, password []byte) error
 }
@@ -20,6 +21,14 @@ type AuthController struct {
 type AuthRequest struct {
 	Username string
 	Password string
+}
+
+type AuthRegisterRequest struct{
+    Username string
+    Password string
+    Name string
+    Department string
+    YOP string
 }
 
 type AuthResponse struct {
@@ -67,7 +76,7 @@ func (h *AuthController) Login(w http.ResponseWriter, r *http.Request, _ httprou
 }
 
 func (h *AuthController) Register(w http.ResponseWriter, r *http.Request, params httprouter.Params) {
-	var body AuthRequest
+	var body AuthRegisterRequest;
 	decoder := json.NewDecoder(r.Body)
 	jsonerr := decoder.Decode(&body)
 
@@ -87,6 +96,13 @@ func (h *AuthController) Register(w http.ResponseWriter, r *http.Request, params
 		Hash:     string(hashedPass),
 	}
 
+    userData := &models.UserData{
+        UserId: user.userId,
+        Name: body.Name,
+        YOP: body.YOP,
+        Dept: body.Department,
+        Points: 0,
+    }
 	dberr := h.UserRepo.Save(user)
 	if dberr != nil {
 		utils.ErrorResponse(w, dberr)

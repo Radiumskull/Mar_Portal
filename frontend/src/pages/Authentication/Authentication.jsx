@@ -2,7 +2,7 @@ import React from "react";
 import GeneralForm from "../../components/Authentication/GeneralForm";
 import styles from "./auth.module.css";
 import { Link } from "react-router-dom";
-import { LoginHandler } from "../../utils/authUtils";
+import { LoginHandler, RegisterHandler } from "../../utils/authUtils";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 const loginFields = {
@@ -33,7 +33,15 @@ const Authentication = (props) => {
     }
   };
 
-  const registerSubmitHandler = () => {};
+  const registerSubmitHandler = async (data) => {
+    try {
+      console.log(data);
+      const res = await RegisterHandler(data);
+      console.log(res);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <div className={styles.page}>
