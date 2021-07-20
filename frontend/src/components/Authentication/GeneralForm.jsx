@@ -50,7 +50,13 @@ const Input = (props) => {
   return (
     <div className={styles.input}>
       <label className={styles.label}>{label}</label>
-      <input type={type} id={name} name={name} onChange={onChange} />
+      <input
+        type={type}
+        id={name}
+        name={name}
+        onChange={onChange}
+        autoComplete="off"
+      />
       <label className={styles.error}>{error}</label>
     </div>
   );

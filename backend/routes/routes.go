@@ -32,6 +32,7 @@ func NewRoute(method string, path string, handler httprouter.Handle) Route {
 func (h *BaseHandler) AuthHandler(router *httprouter.Router) {
 	controller := auth.AuthController{
 		UserRepo:    repositories.NewUserRepo(h.DB),
+        UserDataRepo: repositories.NewUserDataRepo(h.DB),
 		Encrypt:     bcrypt.GenerateFromPassword,
 		CompareHash: bcrypt.CompareHashAndPassword,
 	}
