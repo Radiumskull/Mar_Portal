@@ -19,9 +19,6 @@ const Navbar = () => {
           {user ? (
             <>
               <li>
-                <Link to="/account">Account</Link>
-              </li>
-              <li>
                 <a href="/" onClick={logoutHandler}>Log out</a>
               </li>
             </>

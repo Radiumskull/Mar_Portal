@@ -14,7 +14,7 @@ const registerFields = {
   name: { name: "name", type: "text", label: "Name" },
   username: { name: "username", type: "text", label: "Username" },
   password: { name: "password", type: "password", label: "Password" },
-  department: { name: "department", type: "text", label: "Department" },
+  dept: { name: "dept", type: "text", label: "Department" },
   yop: { name: "yop", type: "number", label: "Year of Admission" },
 };
 

@@ -43,6 +43,7 @@ const HomePrivate = () => {
     try {
       console.log(data)
       await addActivity(user, data);
+      closeDialog();
     } catch (err) {
       console.log(err);
     }
