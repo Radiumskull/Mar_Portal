@@ -1,0 +1,12 @@
+.page {
+  height: 100%;
+  width: 100%;
+}
+
+.formContainer {
+  padding: 1em;
+  max-width: 400px;
+  margin: 0 auto;
+  margin-top: 2em;
+  box-shadow: 0px 4px 8px 2px rgb(235, 238, 240);
+}

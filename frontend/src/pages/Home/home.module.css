@@ -1,0 +1,11 @@
+.activitySection h1 {
+  margin: 1em 0em;
+  font-size: 1.5rem;
+}
+
+.activitySectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1em 1em;
+}
